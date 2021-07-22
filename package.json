@@ -12,5 +12,8 @@
   "dependencies": {
     "rxjs": "^7.2.0",
     "typescript": "^4.3.5"
+  },
+  "devDependencies": {
+    "@types/node": "^16.4.0"
   }
 }

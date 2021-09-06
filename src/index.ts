@@ -1,11 +1,7 @@
 import {
-  Observable,
-  Observer,
-  NextObserver,
-  ErrorObserver,
-  CompletionObserver,
-  Subscriber,
-  Subscription,
+  CompletionObserver, ErrorObserver, NextObserver, Observable,
+  Observer, Subscriber,
+  Subscription
 } from "rxjs";
 
 const observer: Observer<string> = {
@@ -44,6 +40,13 @@ const completeObserver: CompletionObserver<string> = {
     console.log(`${new Date().toISOString()} - [completeObserver] complete!`),
 };
 
+/**
+ * Default Observer
+ * only a next method is implemented
+ */
+const defaultNextObserver: (value: string) => void = (value: string) =>
+    console.log(`${new Date().toISOString()} - [defaultNextObserver] next`, value)
+
 const observable = new Observable<string>((subscriber: Subscriber<string>) => {
   setTimeout(() => {
     subscriber.next("Hello");
@@ -62,6 +65,7 @@ observable.subscribe(observer);
 observable.subscribe(nextObserver);
 observable.subscribe(errorObserver);
 observable.subscribe(completeObserver);
+observable.subscribe(defaultNextObserver);
 /**
  * Subscription with next handle inline
  */
